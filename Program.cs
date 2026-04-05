@@ -29,6 +29,11 @@ builder.Services.AddScoped<IRepository<MedicamentoEntidad>>(provider =>
     var creator = provider.GetRequiredService<MedicamentoRepositoryCreator>();
     return creator.CreateRepo();
 });
+builder.Services.AddScoped<IMedicamentoRepository>(provider =>
+{
+    var creator = provider.GetRequiredService<MedicamentoRepositoryCreator>();
+    return (IMedicamentoRepository)creator.CreateRepo();
+});
 builder.Services.AddScoped<IValidacion<MedicamentoEntidad>, MedicamentoValidacion>();
 builder.Services.AddScoped<IMedicamentoService, MedicamentoService>();
 
@@ -45,6 +50,11 @@ builder.Services.AddScoped<IRepository<BioquimicoEntidad>>(provider =>
 {
     var creator = provider.GetRequiredService<BioquimicoRepositoryCreator>();
     return creator.CreateRepo();
+});
+builder.Services.AddScoped<IBioquimicoRepository>(provider =>
+{
+    var creator = provider.GetRequiredService<BioquimicoRepositoryCreator>();
+    return (IBioquimicoRepository)creator.CreateRepo();
 });
 
 builder.Services.AddScoped<IValidacion<BioquimicoEntidad>, BioquimicoFormularioValidacion>();

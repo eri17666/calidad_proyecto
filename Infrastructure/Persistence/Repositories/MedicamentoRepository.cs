@@ -6,7 +6,7 @@ using ProyectoArqSoft.Services;
 
 namespace ProyectoArqSoft.FactoryProducts
 {
-    public class MedicamentoRepository : IRepository<Medicamento>
+    public class MedicamentoRepository : IMedicamentoRepository
     {
         private readonly string connectionString;
 

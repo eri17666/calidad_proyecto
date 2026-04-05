@@ -1,15 +1,10 @@
 namespace ProyectoArqSoft.Validaciones
 {
-    public class Validacion
+    public class Validacion : ResultadoOperacionBase
     {
-        public bool IsSuccess { get; }
-        public bool IsFailure => !IsSuccess;
-        public string Error { get; }
-
         public Validacion(bool isSuccess, string error = "")
+            : base(isSuccess, error)
         {
-            IsSuccess = isSuccess;
-            Error = error;
         }
 
         public static Validacion Ok()

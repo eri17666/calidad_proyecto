@@ -11,4 +11,15 @@
     <PackageReference Include="MySql.Data" Version="9.6.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="tests\**\*.cs" />
+    <Compile Remove=".sonarqube\**\*.cs" />
+    <EmbeddedResource Remove="tests\**\*" />
+    <EmbeddedResource Remove=".sonarqube\**\*" />
+    <None Remove="tests\**\*" />
+    <None Remove=".sonarqube\**\*" />
+    <Content Remove="tests\**\*" />
+    <Content Remove=".sonarqube\**\*" />
+  </ItemGroup>
+
 </Project>

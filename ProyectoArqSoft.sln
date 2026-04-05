@@ -5,6 +5,8 @@ VisualStudioVersion = 17.14.37012.4 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyectoArqSoft", "ProyectoArqSoft.csproj", "{9615C0A3-A98D-49F8-A6A3-F7D20020D89E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyectoArqSoft.Tests", "tests\ProyectoArqSoft.Tests\ProyectoArqSoft.Tests.csproj", "{B72B86F9-11B0-4E50-AC1E-5EBBA0FD8C82}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{9615C0A3-A98D-49F8-A6A3-F7D20020D89E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9615C0A3-A98D-49F8-A6A3-F7D20020D89E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9615C0A3-A98D-49F8-A6A3-F7D20020D89E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B72B86F9-11B0-4E50-AC1E-5EBBA0FD8C82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B72B86F9-11B0-4E50-AC1E-5EBBA0FD8C82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B72B86F9-11B0-4E50-AC1E-5EBBA0FD8C82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B72B86F9-11B0-4E50-AC1E-5EBBA0FD8C82}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

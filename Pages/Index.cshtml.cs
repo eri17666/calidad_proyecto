@@ -18,13 +18,13 @@ namespace ProyectoArqSoft.Pages
         public DataTable MedicamentoDataTable { get; set; } = new DataTable();
 
         //estadisticas
-        private readonly MedicamentoRepository _medicamentoRepository;
+        private readonly IMedicamentoRepository _medicamentoRepository;
         //private readonly ClienteRepository _clienteRepo;
         //private readonly BioquimicoRepository _bioquimicoRepo;
 
         public int TotalMedicamentos { get; set; }
 
-        public IndexModel(ILogger<IndexModel> logger, IConfiguration configuration, MedicamentoRepository medicamentoRepository)
+        public IndexModel(ILogger<IndexModel> logger, IConfiguration configuration, IMedicamentoRepository medicamentoRepository)
         {
             _logger = logger;
             this.configuration = configuration;

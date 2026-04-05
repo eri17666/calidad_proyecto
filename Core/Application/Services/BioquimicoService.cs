@@ -8,13 +8,15 @@ namespace ProyectoArqSoft.Services
 {
     public class BioquimicoService : IBioquimicoService
     {
-        private readonly IRepository<Bioquimico> _repository;
+        private readonly IBioquimicoRepository _repository;
         private readonly IValidacion<Bioquimico> _validador;
 
-        public BioquimicoService(IRepository<Bioquimico> repository)
+        public BioquimicoService(
+            IBioquimicoRepository repository,
+            IValidacion<Bioquimico> validador)
         {
             _repository = repository;
-            _validador = new BioquimicoFormularioValidacion();
+            _validador = validador;
         }
 
         public DataTable ObtenerTodos(string filtro)
@@ -75,8 +77,7 @@ namespace ProyectoArqSoft.Services
 
         private Validacion ValidarDocumentoDuplicado(Bioquimico bioquimico)
         {
-            var repository = ObtenerRepositorioConcreto();
-            DataTable dtExiste = repository.GetByDocumento(bioquimico.Ci, bioquimico.CiExtencion);
+            DataTable dtExiste = _repository.GetByDocumento(bioquimico.Ci, bioquimico.CiExtencion);
 
             if (dtExiste.Rows.Count > 0)
                 return Validacion.Fail("Ya existe un bioquímico registrado con ese número de carnet y extensión.");
@@ -86,8 +87,7 @@ namespace ProyectoArqSoft.Services
 
         private Validacion ValidarDocumentoDuplicadoEnActualizacion(Bioquimico bioquimico)
         {
-            var repository = ObtenerRepositorioConcreto();
-            DataTable dtExiste = repository.GetByDocumento(bioquimico.Ci, bioquimico.CiExtencion);
+            DataTable dtExiste = _repository.GetByDocumento(bioquimico.Ci, bioquimico.CiExtencion);
 
             if (dtExiste.Rows.Count == 0)
                 return Validacion.Ok();
@@ -98,11 +98,6 @@ namespace ProyectoArqSoft.Services
                 return Validacion.Fail("No se puede actualizar: el número de carnet ya pertenece a otro bioquímico.");
 
             return Validacion.Ok();
-        }
-
-        private Repositories.BioquimicoRepository ObtenerRepositorioConcreto()
-        {
-            return (Repositories.BioquimicoRepository)_repository;
         }
 
         private void LimpiarDatos(Bioquimico bioquimico)

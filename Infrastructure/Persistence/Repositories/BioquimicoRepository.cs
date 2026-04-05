@@ -6,7 +6,7 @@ using System.Data;
 
 namespace ProyectoArqSoft.Repositories
 {
-    public class BioquimicoRepository : IRepository<Bioquimico>
+    public class BioquimicoRepository : IBioquimicoRepository
     {
         private readonly string _connectionString;
 

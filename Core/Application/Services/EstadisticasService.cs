@@ -7,12 +7,12 @@ namespace ProyectoArqSoft.Services
 {
     public class EstadisticasService
     {
-        private readonly MedicamentoRepository _medicamentoRepo;
+        private readonly IMedicamentoRepository _medicamentoRepo;
         //private readonly ClienteRepository _clienteRepo;
         //private readonly BioquimicoRepository _bioquimicoRepo;
 
         public EstadisticasService(
-            MedicamentoRepository medicamentoRepo
+            IMedicamentoRepository medicamentoRepo
             //ClienteRepository clienteRepo,
             //BioquimicoRepository bioquimicoRepo
             )

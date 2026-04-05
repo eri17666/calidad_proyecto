@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SonarProjectConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sonarsource.com/msbuild/analyzer/2021/1">
+  <AnalysisConfigPath>D:\calidadsistemas\ArquitecturaSoft---Gestion-de-una-farmacia-e1c043cc3b248cc2c1fbc4eebf7f037529d44d13\.sonarqube\conf\SonarQubeAnalysisConfig.xml</AnalysisConfigPath>
+  <ProjectPath>D:\calidadsistemas\ArquitecturaSoft---Gestion-de-una-farmacia-e1c043cc3b248cc2c1fbc4eebf7f037529d44d13\ProyectoArqSoft.csproj</ProjectPath>
+  <FilesToAnalyzePath>D:\calidadsistemas\ArquitecturaSoft---Gestion-de-una-farmacia-e1c043cc3b248cc2c1fbc4eebf7f037529d44d13\.sonarqube\conf\0\FilesToAnalyze.txt</FilesToAnalyzePath>
+  <OutPath>D:\calidadsistemas\ArquitecturaSoft---Gestion-de-una-farmacia-e1c043cc3b248cc2c1fbc4eebf7f037529d44d13\.sonarqube\out\0</OutPath>
+  <ProjectType>Product</ProjectType>
+  <TargetFramework>net9.0</TargetFramework>
+</SonarProjectConfig>
