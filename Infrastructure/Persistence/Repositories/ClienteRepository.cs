@@ -5,7 +5,7 @@ using System.Data;
 
 namespace ProyectoArqSoft.FactoryProducts
 {
-    public class ClienteRepository : IRepository<Cliente>
+    public class ClienteRepository : IClienteRepository
     {
         private readonly IConfiguration configuration;
 
@@ -116,6 +116,44 @@ namespace ProyectoArqSoft.FactoryProducts
             {
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@idCliente", id);
+
+                connection.Open();
+
+                using (MySqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return new Cliente
+                        {
+                            IdCliente = Convert.ToInt32(reader["idCliente"]),
+                            Nit = StringHelper.LimpiarEspacios(reader["nit"].ToString()),
+                            RazonSocial = StringHelper.LimpiarEspacios(reader["razon_social"].ToString()),
+                            CorreoElectronico = StringHelper.LimpiarEspacios(reader["correo_electronico"].ToString()),
+                            FechaRegistro = Convert.ToDateTime(reader["fecha_registro"]),
+                            UltimaActualizacion = reader["ultima_actualizacion"] == DBNull.Value
+                                ? null
+                                : Convert.ToDateTime(reader["ultima_actualizacion"])
+                        };
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        public Cliente? ObtenerPorNit(string nit)
+        {
+            string connectionString = configuration.GetConnectionString("MySqlConnection")!;
+            string query = @"SELECT idCliente, fecha_registro, ultima_actualizacion, nit, razon_social, correo_electronico
+                             FROM cliente
+                             WHERE nit = @nit
+                             ORDER BY idCliente
+                             LIMIT 1";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@nit", nit);
 
                 connection.Open();
 

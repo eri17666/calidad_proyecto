@@ -42,6 +42,11 @@ builder.Services.AddScoped<IRepository<ClienteEntidad>>(provider =>
     var creator = provider.GetRequiredService<ClienteRepositoryCreator>();
     return creator.CreateRepo();
 });
+builder.Services.AddScoped<IClienteRepository>(provider =>
+{
+    var creator = provider.GetRequiredService<ClienteRepositoryCreator>();
+    return (IClienteRepository)creator.CreateRepo();
+});
 builder.Services.AddScoped<IValidacion<ClienteEntidad>, ClienteValidacion>();
 builder.Services.AddScoped<IClienteService, ClienteService>();
 

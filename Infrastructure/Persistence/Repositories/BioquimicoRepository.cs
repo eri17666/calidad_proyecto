@@ -121,19 +121,37 @@ namespace ProyectoArqSoft.Repositories
         }
 
         
-       public DataTable GetByDocumento(string ci, string extension)
+       public Bioquimico? GetByDocumento(string ci, string extension)
 {
-    DataTable dt = new DataTable();
     using var connection = new MySqlConnection(_connectionString);
    
-    string query = "SELECT idBioquimico FROM bioquimico WHERE ci = @ci AND ci_extencion = @ext AND activo = 1";
+    string query = @"SELECT idBioquimico, nombres, apellido_paterno, apellido_materno,
+                            ci, ci_extencion, telefono
+                     FROM bioquimico
+                     WHERE ci = @ci AND ci_extencion = @ext AND activo = 1";
     
     using var command = new MySqlCommand(query, connection);
     command.Parameters.AddWithValue("@ci", ci);
     command.Parameters.AddWithValue("@ext", extension);
-    
-    new MySqlDataAdapter(command).Fill(dt);
-    return dt;
+
+    connection.Open();
+
+    using var reader = command.ExecuteReader();
+    if (reader.Read())
+    {
+        return new Bioquimico
+        {
+            IdBioquimico = Convert.ToInt32(reader["idBioquimico"]),
+            Nombres = reader["nombres"].ToString()!,
+            ApellidoPaterno = reader["apellido_paterno"].ToString()!,
+            ApellidoMaterno = reader["apellido_materno"].ToString()!,
+            Ci = reader["ci"].ToString()!,
+            CiExtencion = reader["ci_extencion"].ToString()!,
+            Telefono = reader["telefono"].ToString()!
+        };
+    }
+
+    return null;
 }
 
         

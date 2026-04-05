@@ -77,25 +77,23 @@ namespace ProyectoArqSoft.Services
 
         private Validacion ValidarDocumentoDuplicado(Bioquimico bioquimico)
         {
-            DataTable dtExiste = _repository.GetByDocumento(bioquimico.Ci, bioquimico.CiExtencion);
+            Bioquimico? existente = _repository.GetByDocumento(bioquimico.Ci, bioquimico.CiExtencion);
 
-            if (dtExiste.Rows.Count > 0)
-                return Validacion.Fail("Ya existe un bioquímico registrado con ese número de carnet y extensión.");
+            if (existente != null)
+                return Validacion.Fail("Ya existe un bioquimico registrado con ese numero de carnet y extension.");
 
             return Validacion.Ok();
         }
 
         private Validacion ValidarDocumentoDuplicadoEnActualizacion(Bioquimico bioquimico)
         {
-            DataTable dtExiste = _repository.GetByDocumento(bioquimico.Ci, bioquimico.CiExtencion);
+            Bioquimico? existente = _repository.GetByDocumento(bioquimico.Ci, bioquimico.CiExtencion);
 
-            if (dtExiste.Rows.Count == 0)
+            if (existente == null)
                 return Validacion.Ok();
 
-            int idEncontrado = Convert.ToInt32(dtExiste.Rows[0]["idBioquimico"]);
-
-            if (idEncontrado != bioquimico.IdBioquimico)
-                return Validacion.Fail("No se puede actualizar: el número de carnet ya pertenece a otro bioquímico.");
+            if (existente.IdBioquimico != bioquimico.IdBioquimico)
+                return Validacion.Fail("No se puede actualizar: el numero de carnet ya pertenece a otro bioquimico.");
 
             return Validacion.Ok();
         }

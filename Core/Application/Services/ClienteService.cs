@@ -8,11 +8,11 @@ namespace ProyectoArqSoft.Services
 {
     public class ClienteService : IClienteService
     {
-        private readonly IRepository<Cliente> _repository;
+        private readonly IClienteRepository _repository;
         private readonly IValidacion<Cliente> _validador;
 
         public ClienteService(
-            IRepository<Cliente> repository,
+            IClienteRepository repository,
             IValidacion<Cliente> validador)
         {
             _repository = repository;
@@ -125,19 +125,10 @@ namespace ProyectoArqSoft.Services
             if (cliente.Nit.Equals("CF", StringComparison.OrdinalIgnoreCase))
                 return Validacion.Ok();
 
-            DataTable clientes = _repository.GetAll(cliente.Nit);
+            Cliente? existente = _repository.ObtenerPorNit(cliente.Nit);
 
-            foreach (DataRow row in clientes.Rows)
-            {
-                string nit = StringHelper.QuitarEspacios(row["nit"]?.ToString());
-                int idCliente = Convert.ToInt32(row["idCliente"]);
-
-                if (nit.Equals(cliente.Nit, StringComparison.OrdinalIgnoreCase) &&
-                    idCliente != cliente.IdCliente)
-                {
-                    return Validacion.Fail("Ya existe un cliente con ese NIT.");
-                }
-            }
+            if (existente != null && existente.IdCliente != cliente.IdCliente)
+                return Validacion.Fail("Ya existe un cliente con ese NIT.");
 
             return Validacion.Ok();
         }

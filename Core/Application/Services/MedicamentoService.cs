@@ -8,11 +8,11 @@ namespace ProyectoArqSoft.Services
 {
     public class MedicamentoService : IMedicamentoService
     {
-        private readonly IRepository<Medicamento> _repository;
+        private readonly IMedicamentoRepository _repository;
         private readonly IValidacion<Medicamento> _validador;
 
         public MedicamentoService(
-            IRepository<Medicamento> repository,
+            IMedicamentoRepository repository,
             IValidacion<Medicamento> validador)
         {
             _repository = repository;
