@@ -1,0 +1,127 @@
+@page
+@model ProyectoArqSoft.Pages.MedicamentoCreateModel
+@{
+}
+
+<div class="container py-5 medicamento-form-page">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+
+            <div class="med-card shadow-sm">
+                <div class="med-card-header text-center">
+                    <h2 class="mb-0">Nuevo Medicamento</h2>
+                    <p class="text-muted mt-2 mb-0">Completa los datos para registrar un medicamento</p>
+                </div>
+
+                <div class="med-card-body">
+                    <form method="post" asp-page-handler="CrearMedicamento">
+
+                        <!-- NOMBRE -->
+                        <div class="form-floating mb-3">
+                            <input asp-for="Nombre" class="form-control med-input" placeholder="Nombre" required />
+                            <label asp-for="Nombre"></label>
+                        </div>
+
+                        <!-- PRESENTACION -->
+                        <div class="form-floating mb-3">
+                            <select asp-for="Presentacion" class="form-select med-input" required>
+                                <option value="" selected disabled>Seleccione una presentación</option>
+                                <option value="Cápsulas">Cápsulas</option>
+                                <option value="Crema">Crema</option>
+                                <option value="Gotas">Gotas</option>
+                                <option value="Inyectable">Inyectable</option>
+                                <option value="Jarabe">Jarabe</option>
+                                <option value="Polvo">Polvo</option>
+                                <option value="Pomada">Pomada</option>
+                                <option value="Suspensión">Suspensión</option>
+                                <option value="Tabletas">Tabletas</option>
+                            </select>
+                            <label asp-for="Presentacion"></label>
+                        </div>
+
+                        <!-- CLASIFICACION -->
+                        <div class="form-floating mb-3">
+                            <select asp-for="Clasificacion" class="form-select med-input" required>
+                                <option value="" selected disabled>Seleccione una clasificación</option>
+                                <option value="Analgésico">Analgésico</option>
+                                <option value="Antialérgico">Antialérgico</option>
+                                <option value="Antibiótico">Antibiótico</option>
+                                <option value="Antiinflamatorio">Antiinflamatorio</option>
+                                <option value="Antipirético">Antipirético</option>
+                                <option value="Antiséptico">Antiséptico</option>
+                                <option value="Vitaminas">Vitaminas</option>
+                            </select>
+                            <label asp-for="Clasificacion"></label>
+                        </div>
+
+                        <!-- CONCENTRACION -->
+                        <div class="form-floating mb-1">
+                            <input asp-for="Concentracion"
+                                   class="form-control med-input"
+                                   placeholder="Ej: 250 mg/5ml"
+                                   pattern="^\d+(\.\d+)?\s?(mg|g|mcg|ml|%)\s*(\/\s*(\d+(\.\d+)?)?\s?(ml|l))?$"
+                                   title="Formato válido: 500 mg, 250 mg/5ml, 0.9 %"
+                                   required />
+                            <label asp-for="Concentracion"></label>
+                        </div>
+                        <div class="form-text mb-3">
+                            Ejemplo: 500 mg, 250 mg/5ml o 0.9 %
+                        </div>
+
+                        <div class="row">
+                            <!-- PRECIO -->
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Precio" class="form-label text-center d-block">Precio</label>
+
+                                <div class="input-group">
+                                    <span class="input-group-text text-success fw-bold">Bs.</span>
+                                    <input asp-for="Precio"
+                                        type="number"
+                                        step="0.01"
+                                        class="form-control med-input"
+                                        placeholder="0.00"
+                                        required />
+                                </div>
+
+                                <div class="form-text text-center">
+                                    Ej: 10.50
+                                </div>
+                            </div>
+
+                            <!-- STOCK -->
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Stock" class="form-label text-center d-block">Stock</label>
+
+                                <input asp-for="Stock"
+                                    type="number"
+                                    min="0"
+                                    class="form-control med-input"
+                                    placeholder="0"
+                                    required />
+
+                                <div class="form-text text-center invisible">
+                                    Ejemplo
+                                </div>
+                            </div>
+                        </div>
+                        <!-- MENSAJES -->
+                        @if (!string.IsNullOrWhiteSpace(Model.Estado.MensajeError))
+                        {
+                            <div class="alert alert-danger med-alert" role="alert">
+                                @Model.Estado.MensajeError
+                            </div>
+                        }
+
+                        <!-- BOTONES -->
+                        <div class="d-flex justify-content-end gap-2 mt-4">
+                            <a asp-page="Medicamento" class="btn med-btn-secondary">Volver</a>
+                            <button type="submit" class="btn med-btn-primary">Guardar</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
