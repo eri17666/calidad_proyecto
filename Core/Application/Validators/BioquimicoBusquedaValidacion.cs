@@ -1,28 +1,44 @@
 using System.Text.RegularExpressions;
-using ProyectoArqSoft.Helpers;
 
 namespace ProyectoArqSoft.Validaciones
 {
     public class BioquimicoBusquedaValidacion : IValidacion<string>
     {
+        private const int MaxLongitud = 20;
+        private const string PatronValido = @"^([a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+|\d+|\d+-\d[A-Z])$";
+
         public Validacion Validar(string filtro)
         {
-            var validacionGeneral = FiltroHelper.ValidarFiltro(filtro);
-
-            if (validacionGeneral.IsFailure)
-                return validacionGeneral;
-
             if (string.IsNullOrWhiteSpace(filtro))
                 return Validacion.Ok();
 
-            filtro = FiltroHelper.LimpiarFiltro(filtro);
+            filtro = filtro.Trim();
 
-            string patronValido = @"^([a-zA-Z\s]+|\d+|\d+-\d[A-Z])$";
+            var validacionLongitud = ValidarLongitud(filtro);
+            if (validacionLongitud != null)
+                return validacionLongitud;
 
-            if (!Regex.IsMatch(filtro, patronValido))
-                return Validacion.Fail("Criterio inválido.");
+            var validacionFormato = ValidarFormatoBusqueda(filtro);
+            if (validacionFormato != null)
+                return validacionFormato;
 
             return Validacion.Ok();
+        }
+
+        public Validacion? ValidarLongitud(string filtro)
+        {
+            if (filtro.Length > MaxLongitud)
+                return Validacion.Fail($"El criterio excede los {MaxLongitud} caracteres");
+
+            return null;
+        }
+
+        public Validacion? ValidarFormatoBusqueda(string filtro)
+        {
+            if (!Regex.IsMatch(filtro, PatronValido))
+                return Validacion.Fail("Criterio de búsqueda inválido. Use letras, números o rango (ej: 1-5A)");
+
+            return null;
         }
     }
 }
