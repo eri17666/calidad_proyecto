@@ -267,4 +267,64 @@ public class MedicamentoServiceTests
         Assert.Equal("Analgesico", medicamentoActualizado.Clasificacion);
         Assert.Equal("500 mg", medicamentoActualizado.Concentracion);
     }
+
+    [Fact]
+    public void EliminarLogicamente_DebeFallar_CuandoElRepositorioNoElimina()
+    {
+        var repository = new Mock<IMedicamentoRepository>();
+        var validador = new Mock<IValidacion<Medicamento>>();
+
+        repository
+            .Setup(x => x.Delete(It.IsAny<Medicamento>()))
+            .Returns(0);
+
+        var service = new MedicamentoService(repository.Object, validador.Object);
+
+        Validacion resultado = service.EliminarLogicamente(7);
+
+        Assert.True(resultado.IsFailure);
+        Assert.Equal("No se pudo eliminar el medicamento.", resultado.Error);
+        repository.Verify(x => x.Delete(It.IsAny<Medicamento>()), Times.Once);
+    }
+
+    [Fact]
+    public void EliminarLogicamente_DebeRetornarOk_CuandoElRepositorioElimina()
+    {
+        var repository = new Mock<IMedicamentoRepository>();
+        var validador = new Mock<IValidacion<Medicamento>>();
+
+        repository
+            .Setup(x => x.Delete(It.IsAny<Medicamento>()))
+            .Returns(1);
+
+        var service = new MedicamentoService(repository.Object, validador.Object);
+
+        Validacion resultado = service.EliminarLogicamente(7);
+
+        Assert.True(resultado.IsSuccess);
+        Assert.Equal(string.Empty, resultado.Error);
+        repository.Verify(x => x.Delete(It.IsAny<Medicamento>()), Times.Once);
+    }
+
+    [Fact]
+    public void EliminarLogicamente_DebeEnviarElIdCorrecto_AlRepositorio()
+    {
+        var repository = new Mock<IMedicamentoRepository>();
+        var validador = new Mock<IValidacion<Medicamento>>();
+
+        Medicamento? medicamentoEliminado = null;
+
+        repository
+            .Setup(x => x.Delete(It.IsAny<Medicamento>()))
+            .Callback<Medicamento>(m => medicamentoEliminado = m)
+            .Returns(1);
+
+        var service = new MedicamentoService(repository.Object, validador.Object);
+
+        Validacion resultado = service.EliminarLogicamente(7);
+
+        Assert.True(resultado.IsSuccess);
+        Assert.NotNull(medicamentoEliminado);
+        Assert.Equal(7, medicamentoEliminado!.Id);
+    }
 }
