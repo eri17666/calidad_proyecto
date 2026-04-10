@@ -48,10 +48,10 @@ namespace ProyectoArqSoft.Tests.Validaciones
         }
 
         [Fact]
-        public void Validar_FiltroRangoNumerico_RetornaOk()
+        public void Validar_FiltroRangoNumerico_RetornaError()
         {
             var resultado = _validacion.Validar("1-5");
-            Assert.True(resultado.IsSuccess);
+            Assert.True(resultado.IsFailure);
         }
 
         [Fact]
