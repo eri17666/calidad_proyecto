@@ -297,9 +297,9 @@ var assemblies = [
       { "name": "ProyectoArqSoft.FactoryCreators.MedicamentoRepositoryCreator", "rp": "ProyectoArqSoft_MedicamentoRepositoryCreator.html", "cl": 0, "ucl": 3, "cal": 3, "tl": 13, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "ProyectoArqSoft.FactoryProducts.ClienteRepository", "rp": "ProyectoArqSoft_ClienteRepository.html", "cl": 0, "ucl": 147, "cal": 147, "tl": 205, "cb": 0, "tb": 12, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "ProyectoArqSoft.FactoryProducts.MedicamentoRepository", "rp": "ProyectoArqSoft_MedicamentoRepository.html", "cl": 0, "ucl": 125, "cal": 125, "tl": 183, "cb": 0, "tb": 2, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "ProyectoArqSoft.Helpers.FiltroHelper", "rp": "ProyectoArqSoft_FiltroHelper.html", "cl": 0, "ucl": 20, "cal": 20, "tl": 39, "cb": 0, "tb": 14, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "ProyectoArqSoft.Helpers.FiltroHelper", "rp": "ProyectoArqSoft_FiltroHelper.html", "cl": 7, "ucl": 13, "cal": 20, "tl": 39, "cb": 1, "tb": 14, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "ProyectoArqSoft.Helpers.FiltroSqlHelper", "rp": "ProyectoArqSoft_FiltroSqlHelper.html", "cl": 0, "ucl": 26, "cal": 26, "tl": 46, "cb": 0, "tb": 12, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "ProyectoArqSoft.Helpers.StringHelper", "rp": "ProyectoArqSoft_StringHelper.html", "cl": 21, "ucl": 14, "cal": 35, "tl": 64, "cb": 5, "tb": 14, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "ProyectoArqSoft.Helpers.StringHelper", "rp": "ProyectoArqSoft_StringHelper.html", "cl": 22, "ucl": 13, "cal": 35, "tl": 64, "cb": 6, "tb": 14, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "ProyectoArqSoft.Model.DTOS.EstadisticasDTO", "rp": "ProyectoArqSoft_EstadisticasDTO.html", "cl": 0, "ucl": 4, "cal": 4, "tl": 11, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "ProyectoArqSoft.Models.Bioquimico", "rp": "ProyectoArqSoft_Bioquimico.html", "cl": 9, "ucl": 14, "cal": 23, "tl": 34, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "ProyectoArqSoft.Models.Cliente", "rp": "ProyectoArqSoft_Cliente.html", "cl": 7, "ucl": 8, "cal": 15, "tl": 22, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
@@ -319,14 +319,14 @@ var assemblies = [
       { "name": "ProyectoArqSoft.Pages.ClienteCreateModel", "rp": "ProyectoArqSoft_ClienteCreateModel.html", "cl": 0, "ucl": 22, "cal": 22, "tl": 54, "cb": 0, "tb": 2, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "ProyectoArqSoft.Pages.ClienteEditModel", "rp": "ProyectoArqSoft_ClienteEditModel.html", "cl": 0, "ucl": 37, "cal": 37, "tl": 77, "cb": 0, "tb": 6, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "ProyectoArqSoft.Pages.ClienteModel", "rp": "ProyectoArqSoft_ClienteModel.html", "cl": 0, "ucl": 29, "cal": 29, "tl": 59, "cb": 0, "tb": 8, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "ProyectoArqSoft.Pages.ErrorModel", "rp": "ProyectoArqSoft_ErrorModel.html", "cl": 0, "ucl": 9, "cal": 9, "tl": 27, "cb": 0, "tb": 4, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "ProyectoArqSoft.Pages.ErrorModel", "rp": "ProyectoArqSoft_ErrorModel.html", "cl": 9, "ucl": 0, "cal": 9, "tl": 27, "cb": 3, "tb": 4, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "ProyectoArqSoft.Pages.EstadoPaginas.EstadoPagina", "rp": "ProyectoArqSoft_EstadoPagina.html", "cl": 3, "ucl": 0, "cal": 3, "tl": 9, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "ProyectoArqSoft.Pages.IndexModel", "rp": "ProyectoArqSoft_IndexModel.html", "cl": 0, "ucl": 32, "cal": 32, "tl": 64, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "ProyectoArqSoft.Pages.Medicamento.Pages_Medicamento_Medicamento", "rp": "ProyectoArqSoft_Pages_Medicamento_Medicamento.html", "cl": 0, "ucl": 9, "cal": 9, "tl": 213, "cb": 0, "tb": 14, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "ProyectoArqSoft.Pages.Medicamento.Pages_Medicamento_MedicamentoCreate", "rp": "ProyectoArqSoft_Pages_Medicamento_MedicamentoCreate.html", "cl": 0, "ucl": 3, "cal": 3, "tl": 127, "cb": 0, "tb": 28, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "ProyectoArqSoft.Pages.Medicamento.Pages_Medicamento_MedicamentoUpdate", "rp": "ProyectoArqSoft_Pages_Medicamento_MedicamentoUpdate.html", "cl": 0, "ucl": 3, "cal": 3, "tl": 128, "cb": 0, "tb": 30, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "ProyectoArqSoft.Pages.MedicamentoCreateModel", "rp": "ProyectoArqSoft_MedicamentoCreateModel.html", "cl": 26, "ucl": 0, "cal": 26, "tl": 62, "cb": 2, "tb": 2, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "ProyectoArqSoft.Pages.MedicamentoModel", "rp": "ProyectoArqSoft_MedicamentoModel.html", "cl": 0, "ucl": 29, "cal": 29, "tl": 59, "cb": 0, "tb": 8, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "ProyectoArqSoft.Pages.MedicamentoModel", "rp": "ProyectoArqSoft_MedicamentoModel.html", "cl": 28, "ucl": 1, "cal": 29, "tl": 59, "cb": 6, "tb": 8, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "ProyectoArqSoft.Pages.MedicamentoUpdateModel", "rp": "ProyectoArqSoft_MedicamentoUpdateModel.html", "cl": 41, "ucl": 0, "cal": 41, "tl": 85, "cb": 4, "tb": 4, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "ProyectoArqSoft.Pages.Pages__ViewStart", "rp": "ProyectoArqSoft_Pages__ViewStart.html", "cl": 0, "ucl": 1, "cal": 1, "tl": 3, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "ProyectoArqSoft.Pages.Pages_Error", "rp": "ProyectoArqSoft_Pages_Error.html", "cl": 0, "ucl": 4, "cal": 4, "tl": 26, "cb": 0, "tb": 2, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
@@ -427,12 +427,6 @@ var riskHotspots = [
       { "value": 14, "exceeded": false },
     ]},
   {
-    "assembly": "ProyectoArqSoft", "class": "ProyectoArqSoft.Helpers.FiltroHelper", "reportPath": "ProyectoArqSoft_FiltroHelper.html", "methodName": "ValidarFiltro(System.String,System.Int32,System.Int32)", "methodShortName": "ValidarFiltro(...)", "fileIndex": 0, "line": 13,
-    "metrics": [
-      { "value": 156, "exceeded": true },
-      { "value": 12, "exceeded": false },
-    ]},
-  {
     "assembly": "ProyectoArqSoft", "class": "ProyectoArqSoft.Helpers.FiltroSqlHelper", "reportPath": "ProyectoArqSoft_FiltroSqlHelper.html", "methodName": "ConstruirCondicionLike(System.String,System.String[])", "methodShortName": "ConstruirCondicionLike(...)", "fileIndex": 0, "line": 9,
     "metrics": [
       { "value": 110, "exceeded": true },
@@ -443,6 +437,12 @@ var riskHotspots = [
     "metrics": [
       { "value": 72, "exceeded": true },
       { "value": 8, "exceeded": false },
+    ]},
+  {
+    "assembly": "ProyectoArqSoft", "class": "ProyectoArqSoft.Helpers.FiltroHelper", "reportPath": "ProyectoArqSoft_FiltroHelper.html", "methodName": "ValidarFiltro(System.String,System.Int32,System.Int32)", "methodShortName": "ValidarFiltro(...)", "fileIndex": 0, "line": 13,
+    "metrics": [
+      { "value": 55, "exceeded": true },
+      { "value": 12, "exceeded": false },
     ]},
   {
     "assembly": "ProyectoArqSoft", "class": "LoginModel", "reportPath": "ProyectoArqSoft_LoginModel.html", "methodName": "OnPost()", "methodShortName": "OnPost()", "fileIndex": 0, "line": 17,
