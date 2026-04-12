@@ -12,17 +12,17 @@ namespace ProyectoArqSoft.Repositories
 
         public BioquimicoRepository(IConfiguration configuration)
         {
-            
+
             _connectionString = configuration.GetConnectionString("MySqlConnection")!;
         }
 
-        
+
         public DataTable GetAll(string filtro)
         {
             DataTable dt = new DataTable();
             using var connection = new MySqlConnection(_connectionString);
-            
-            
+
+
             string query = $@"SELECT idBioquimico, nombres, apellido_paterno, apellido_materno, 
                                      ci, ci_extencion, telefono 
                               FROM bioquimico 
@@ -32,17 +32,17 @@ namespace ProyectoArqSoft.Repositories
 
             using var command = new MySqlCommand(query, connection);
             FiltroSqlHelper.AgregarParametrosLike(command, filtro);
-            
+
             new MySqlDataAdapter(command).Fill(dt);
             return dt;
         }
 
-        
+
         public Bioquimico? GetById(int id)
         {
             using var connection = new MySqlConnection(_connectionString);
             string query = "SELECT * FROM bioquimico WHERE idBioquimico = @id AND activo = 1";
-            
+
             using var command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@id", id);
             connection.Open();
@@ -64,22 +64,22 @@ namespace ProyectoArqSoft.Repositories
             return null;
         }
 
-        
+
         public int Insert(Bioquimico entity)
         {
             using var connection = new MySqlConnection(_connectionString);
             string query = @"INSERT INTO bioquimico 
                              (nombres, apellido_paterno, apellido_materno, ci, ci_extencion, telefono, activo) 
                              VALUES (@nom, @apP, @apM, @ci, @ext, @tel, 1)";
-            
+
             using var command = new MySqlCommand(query, connection);
             MapearParametros(command, entity);
-            
+
             connection.Open();
             return command.ExecuteNonQuery();
         }
 
-       
+
         public int Update(Bioquimico entity)
         {
             using var connection = new MySqlConnection(_connectionString);
@@ -87,29 +87,29 @@ namespace ProyectoArqSoft.Repositories
                              SET nombres=@nom, apellido_paterno=@apP, apellido_materno=@apM, 
                                  ci=@ci, ci_extencion=@ext, telefono=@tel, ultima_actualizacion=NOW() 
                              WHERE idBioquimico=@id AND activo=1";
-            
+
             using var command = new MySqlCommand(query, connection);
             MapearParametros(command, entity);
             command.Parameters.AddWithValue("@id", entity.IdBioquimico);
-            
+
             connection.Open();
             return command.ExecuteNonQuery();
         }
 
-        
+
         public int Delete(Bioquimico entity)
         {
             using var connection = new MySqlConnection(_connectionString);
             string query = "UPDATE bioquimico SET activo = 0 WHERE idBioquimico = @id";
-            
+
             using var command = new MySqlCommand(query, connection);
             command.Parameters.AddWithValue("@id", entity.IdBioquimico);
-            
+
             connection.Open();
             return command.ExecuteNonQuery();
         }
 
-        
+
         private void MapearParametros(MySqlCommand command, Bioquimico b)
         {
             command.Parameters.AddWithValue("@nom", b.Nombres);
@@ -120,41 +120,53 @@ namespace ProyectoArqSoft.Repositories
             command.Parameters.AddWithValue("@tel", b.Telefono);
         }
 
-        
-       public Bioquimico? GetByDocumento(string ci, string extension)
-{
-    using var connection = new MySqlConnection(_connectionString);
-   
-    string query = @"SELECT idBioquimico, nombres, apellido_paterno, apellido_materno,
+
+        public Bioquimico? GetByDocumento(string ci, string extension)
+        {
+            using var connection = new MySqlConnection(_connectionString);
+
+            string query = @"SELECT idBioquimico, nombres, apellido_paterno, apellido_materno,
                             ci, ci_extencion, telefono
                      FROM bioquimico
                      WHERE ci = @ci AND ci_extencion = @ext AND activo = 1";
-    
-    using var command = new MySqlCommand(query, connection);
-    command.Parameters.AddWithValue("@ci", ci);
-    command.Parameters.AddWithValue("@ext", extension);
 
-    connection.Open();
+            using var command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@ci", ci);
+            command.Parameters.AddWithValue("@ext", extension);
 
-    using var reader = command.ExecuteReader();
-    if (reader.Read())
-    {
-        return new Bioquimico
-        {
-            IdBioquimico = Convert.ToInt32(reader["idBioquimico"]),
-            Nombres = reader["nombres"].ToString()!,
-            ApellidoPaterno = reader["apellido_paterno"].ToString()!,
-            ApellidoMaterno = reader["apellido_materno"].ToString()!,
-            Ci = reader["ci"].ToString()!,
-            CiExtencion = reader["ci_extencion"].ToString()!,
-            Telefono = reader["telefono"].ToString()!
-        };
-    }
+            connection.Open();
 
-    return null;
-}
+            using var reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                return new Bioquimico
+                {
+                    IdBioquimico = Convert.ToInt32(reader["idBioquimico"]),
+                    Nombres = reader["nombres"].ToString()!,
+                    ApellidoPaterno = reader["apellido_paterno"].ToString()!,
+                    ApellidoMaterno = reader["apellido_materno"].ToString()!,
+                    Ci = reader["ci"].ToString()!,
+                    CiExtencion = reader["ci_extencion"].ToString()!,
+                    Telefono = reader["telefono"].ToString()!
+                };
+            }
 
-        
+            return null;
+        }
         public DataTable GetAll() => GetAll(string.Empty);
+
+    public int Count()
+        {
+            string query = "SELECT COUNT(*) FROM bioquimico";
+
+            using (MySqlConnection connection = new MySqlConnection(_connectionString))
+            {
+                MySqlCommand command = new MySqlCommand(query, connection);
+                connection.Open();
+
+                return Convert.ToInt32(command.ExecuteScalar());
+            }
+        }
+
     }
 }

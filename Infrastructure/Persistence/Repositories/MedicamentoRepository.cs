@@ -1,8 +1,9 @@
 using MySql.Data.MySqlClient;
 using ProyectoArqSoft.Helpers;
 using ProyectoArqSoft.Models;
-using System.Data;
 using ProyectoArqSoft.Services;
+using System.Configuration;
+using System.Data;
 
 namespace ProyectoArqSoft.FactoryProducts
 {
@@ -178,6 +179,27 @@ namespace ProyectoArqSoft.FactoryProducts
                 return Convert.ToInt32(command.ExecuteScalar());
             }
         }
+        public DataTable GetDestacados()
+        {
+            DataTable tabla = new DataTable();
 
+            string query = @"SELECT nombre,
+                            presentacion,
+                            clasificacion,
+                            concentracion,
+                            precio
+                     FROM medicamento
+                     WHERE estado = 1
+                     ORDER BY RAND()
+                     LIMIT 3";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection);
+                adapter.Fill(tabla);
+            }
+
+            return tabla;
+        }
     }
 }
