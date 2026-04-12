@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
@@ -28,10 +28,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\ProyectoArqSoft.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="TestResults\" />
   </ItemGroup>
 
 </Project>
