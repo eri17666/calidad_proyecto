@@ -58,3 +58,11 @@ coverage/
 
 # Configuración local de NuGet
 .sandbox-appdata/
+
+# Reportes de Cobertura específicos
+CoverageReport/
+CoverageReports/
+ReporteHTML/
+coverlet.runsettings
+# Reportes de ReportGenerator / Cobertura
+coverage-report/
