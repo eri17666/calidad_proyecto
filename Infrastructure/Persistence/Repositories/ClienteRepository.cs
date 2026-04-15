@@ -201,5 +201,17 @@ namespace ProyectoArqSoft.FactoryProducts
 
             return query;
         }
+        public int Count()
+        {
+            string query = "SELECT COUNT(*) FROM cliente";
+
+            using (MySqlConnection connection = new MySqlConnection(configuration.GetConnectionString("MySqlConnection")))
+            {
+                MySqlCommand command = new MySqlCommand(query, connection);
+                connection.Open();
+
+                return Convert.ToInt32(command.ExecuteScalar());
+            }
+        }
     }
 }
