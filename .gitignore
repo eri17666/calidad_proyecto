@@ -66,3 +66,7 @@ ReporteHTML/
 coverlet.runsettings
 # Reportes de ReportGenerator / Cobertura
 coverage-report/
+
+coveragereport/
+TestResults/
+tests/**/TestResults/
