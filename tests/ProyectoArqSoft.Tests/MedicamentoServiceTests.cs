@@ -3,6 +3,7 @@ using ProyectoArqSoft.FactoryProducts;
 using ProyectoArqSoft.Models;
 using ProyectoArqSoft.Services;
 using ProyectoArqSoft.Validaciones;
+using System.Data;
 
 namespace ProyectoArqSoft.Tests;
 
@@ -326,5 +327,63 @@ public class MedicamentoServiceTests
         Assert.True(resultado.IsSuccess);
         Assert.NotNull(medicamentoEliminado);
         Assert.Equal(7, medicamentoEliminado!.Id);
+    }
+
+    [Fact]
+    public void ObtenerTodos_DebeRetornarDataTable()
+    {
+        var repo = new Mock<IMedicamentoRepository>();
+        var validador = new Mock<IValidacion<Medicamento>>();
+
+        var tabla = new DataTable();
+
+        repo.Setup(x => x.GetAll()).Returns(tabla);
+
+        var service = new MedicamentoService(repo.Object, validador.Object);
+
+        var resultado = service.ObtenerTodos();
+
+        Assert.NotNull(resultado);
+        Assert.Equal(tabla, resultado);
+    }
+
+    [Fact]
+    public void ObtenerTodosConFiltro_DebeRetornarDataTable()
+    {
+        var repo = new Mock<IMedicamentoRepository>();
+        var validador = new Mock<IValidacion<Medicamento>>();
+
+        var tabla = new DataTable();
+
+        repo.Setup(x => x.GetAll("para")).Returns(tabla);
+
+        var service = new MedicamentoService(repo.Object, validador.Object);
+
+        var resultado = service.ObtenerTodos("para");
+
+        Assert.NotNull(resultado);
+        Assert.Equal(tabla, resultado);
+    }
+
+    [Fact]
+    public void ObtenerPorId_DebeRetornarMedicamento()
+    {
+        var repo = new Mock<IMedicamentoRepository>();
+        var validador = new Mock<IValidacion<Medicamento>>();
+
+        var medicamento = new Medicamento
+        {
+            Id = 1,
+            Nombre = "Paracetamol"
+        };
+
+        repo.Setup(x => x.GetById(1)).Returns(medicamento);
+
+        var service = new MedicamentoService(repo.Object, validador.Object);
+
+        var resultado = service.ObtenerPorId(1);
+
+        Assert.NotNull(resultado);
+        Assert.Equal("Paracetamol", resultado.Nombre);
     }
 }
