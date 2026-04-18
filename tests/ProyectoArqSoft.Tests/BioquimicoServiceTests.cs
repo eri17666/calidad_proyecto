@@ -181,5 +181,73 @@ namespace ProyectoArqSoft.Tests
 
             Assert.NotNull(resultado);
         }
+
+        [Fact]
+        public void Actualizar_DebeFallar_CuandoDuplicadoDeOtro()
+        {
+            var repo = new Mock<IBioquimicoRepository>();
+            var val = new Mock<IValidacion<Bioquimico>>();
+
+            val.Setup(x => x.Validar(It.IsAny<Bioquimico>()))
+               .Returns(Validacion.Ok());
+
+            repo.Setup(x => x.GetByDocumento(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns(new Bioquimico { IdBioquimico = 2 });
+
+            var service = new BioquimicoService(repo.Object, val.Object);
+
+            var result = service.Actualizar(new Bioquimico
+            {
+                IdBioquimico = 1,
+                Ci = "123",
+                CiExtencion = "LP"
+            });
+
+            Assert.True(result.IsFailure);
+        }
+
+        [Fact]
+        public void Actualizar_DebePermitir_MismoDocumentoMismoId()
+        {
+            var repo = new Mock<IBioquimicoRepository>();
+            var val = new Mock<IValidacion<Bioquimico>>();
+
+            val.Setup(x => x.Validar(It.IsAny<Bioquimico>()))
+               .Returns(Validacion.Ok());
+
+            repo.Setup(x => x.GetByDocumento(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns(new Bioquimico { IdBioquimico = 1 });
+
+            repo.Setup(x => x.Update(It.IsAny<Bioquimico>()))
+                .Returns(1);
+
+            var service = new BioquimicoService(repo.Object, val.Object);
+
+            var result = service.Actualizar(new Bioquimico
+            {
+                IdBioquimico = 1,
+                Ci = "123",
+                CiExtencion = "LP"
+            });
+
+            Assert.True(result.IsSuccess);
+        }
+
+        [Fact]
+        public void Eliminar_DebeFallar_CuandoNoSeElimina()
+        {
+            var repo = new Mock<IBioquimicoRepository>();
+            var val = new Mock<IValidacion<Bioquimico>>();
+
+            repo.Setup(x => x.Delete(It.IsAny<Bioquimico>()))
+                .Returns(0);
+
+            var service = new BioquimicoService(repo.Object, val.Object);
+
+            var result = service.Eliminar(1);
+
+            Assert.True(result.IsFailure);
+        }
+
     }
 }
