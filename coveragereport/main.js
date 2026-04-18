@@ -290,7 +290,7 @@ var assemblies = [
   {
     "name": "ProyectoArqSoft",
     "classes": [
-      { "name": "LoginModel", "rp": "ProyectoArqSoft_LoginModel.html", "cl": 0, "ucl": 12, "cal": 12, "tl": 30, "cb": 0, "tb": 6, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "LoginModel", "rp": "ProyectoArqSoft_LoginModel.html", "cl": 12, "ucl": 0, "cal": 12, "tl": 30, "cb": 5, "tb": 6, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "Program", "rp": "ProyectoArqSoft_Program.html", "cl": 0, "ucl": 64, "cal": 64, "tl": 90, "cb": 0, "tb": 2, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "ProyectoArqSoft.FactoryCreators.BioquimicoRepositoryCreator", "rp": "ProyectoArqSoft_BioquimicoRepositoryCreator.html", "cl": 0, "ucl": 7, "cal": 7, "tl": 23, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "ProyectoArqSoft.FactoryCreators.ClienteRepositoryCreator", "rp": "ProyectoArqSoft_ClienteRepositoryCreator.html", "cl": 0, "ucl": 7, "cal": 7, "tl": 20, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
@@ -425,12 +425,6 @@ var riskHotspots = [
     "metrics": [
       { "value": 210, "exceeded": true },
       { "value": 14, "exceeded": false },
-    ]},
-  {
-    "assembly": "ProyectoArqSoft", "class": "LoginModel", "reportPath": "ProyectoArqSoft_LoginModel.html", "methodName": "OnPost()", "methodShortName": "OnPost()", "fileIndex": 0, "line": 17,
-    "metrics": [
-      { "value": 42, "exceeded": true },
-      { "value": 6, "exceeded": false },
     ]},
 ];
 

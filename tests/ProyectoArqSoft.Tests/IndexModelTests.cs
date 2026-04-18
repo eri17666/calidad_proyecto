@@ -81,5 +81,47 @@ namespace ProyectoArqSoft.Tests
             Assert.Equal(5, model.TotalBioquimicos);
             Assert.Single(model.MedicamentoDataTable.Rows);
         }
+
+        [Fact]
+        public void OnGet_DebeCargarUsuarioDesdeSession()
+        {
+            var loggerMock = new Mock<ILogger<IndexModel>>();
+            var medicamentoRepoMock = new Mock<IMedicamentoRepository>();
+            var clienteRepoMock = new Mock<IClienteRepository>();
+            var bioquimicoRepoMock = new Mock<IBioquimicoRepository>();
+
+            medicamentoRepoMock.Setup(x => x.Count()).Returns(1);
+            clienteRepoMock.Setup(x => x.Count()).Returns(1);
+            bioquimicoRepoMock.Setup(x => x.Count()).Returns(1);
+            medicamentoRepoMock.Setup(x => x.GetDestacados()).Returns(new DataTable());
+
+            var model = new IndexModel(
+                loggerMock.Object,
+                medicamentoRepoMock.Object,
+                clienteRepoMock.Object,
+                bioquimicoRepoMock.Object
+            );
+
+            var sessionMock = new Mock<ISession>();
+            byte[] usuarioBytes = System.Text.Encoding.UTF8.GetBytes("Jose");
+
+            sessionMock
+                .Setup(s => s.TryGetValue("Usuario", out usuarioBytes))
+                .Returns(true);
+
+            var httpContext = new DefaultHttpContext();
+            httpContext.Session = sessionMock.Object;
+
+            model.PageContext = new PageContext
+            {
+                HttpContext = httpContext
+            };
+
+            model.OnGet();
+
+            Assert.Equal("Jose", model.Usuario);
+        }
+        
+
     }
 }
