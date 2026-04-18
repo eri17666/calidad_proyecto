@@ -121,7 +121,39 @@ namespace ProyectoArqSoft.Tests
 
             Assert.Equal("Jose", model.Usuario);
         }
-        
+        [Fact]
+        public void OnGet_DebeFuncionar_SinUsuarioEnSession()
+        {
+            var loggerMock = new Mock<ILogger<IndexModel>>();
+            var medicamentoRepoMock = new Mock<IMedicamentoRepository>();
+            var clienteRepoMock = new Mock<IClienteRepository>();
+            var bioquimicoRepoMock = new Mock<IBioquimicoRepository>();
+
+            medicamentoRepoMock.Setup(x => x.Count()).Returns(1);
+            clienteRepoMock.Setup(x => x.Count()).Returns(1);
+            bioquimicoRepoMock.Setup(x => x.Count()).Returns(1);
+            medicamentoRepoMock.Setup(x => x.GetDestacados()).Returns(new DataTable());
+
+            var model = new IndexModel(
+                loggerMock.Object,
+                medicamentoRepoMock.Object,
+                clienteRepoMock.Object,
+                bioquimicoRepoMock.Object
+            );
+
+            var httpContext = new DefaultHttpContext();
+            httpContext.Session = new Mock<ISession>().Object;
+
+            model.PageContext = new PageContext
+            {
+                HttpContext = httpContext
+            };
+
+            model.OnGet();
+
+            Assert.Null(model.Usuario);
+        }
+
 
     }
 }

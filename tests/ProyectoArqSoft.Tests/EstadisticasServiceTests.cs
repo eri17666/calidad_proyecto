@@ -95,5 +95,30 @@ namespace ProyectoArqSoft.Tests
 
             Assert.Throws<Exception>(() => service.ObtenerEstadisticas());
         }
+
+        [Fact]
+        public void ObtenerEstadisticas_DebeLlamarRepositorios()
+        {
+            var medicamentoRepo = new Mock<IMedicamentoRepository>();
+            var clienteRepo = new Mock<IClienteRepository>();
+            var bioquimicoRepo = new Mock<IBioquimicoRepository>();
+
+            medicamentoRepo.Setup(x => x.Count()).Returns(1);
+            clienteRepo.Setup(x => x.Count()).Returns(1);
+            bioquimicoRepo.Setup(x => x.Count()).Returns(1);
+
+            var service = new EstadisticasService(
+                medicamentoRepo.Object,
+                clienteRepo.Object,
+                bioquimicoRepo.Object
+            );
+
+            service.ObtenerEstadisticas();
+
+            medicamentoRepo.Verify(x => x.Count(), Times.Once);
+            clienteRepo.Verify(x => x.Count(), Times.Once);
+            bioquimicoRepo.Verify(x => x.Count(), Times.Once);
+        }
+
     }
 }
