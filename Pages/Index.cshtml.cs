@@ -1,8 +1,13 @@
+using System.Runtime.CompilerServices;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ProyectoArqSoft.FactoryProducts;
 using ProyectoArqSoft.Repositories;
 using ProyectoArqSoft.Services;
 using System.Data;
+
+[assembly: InternalsVisibleTo("ProyectoArqSoft.Tests")]
 
 namespace ProyectoArqSoft.Pages
 {

@@ -62,3 +62,14 @@ coverage/
 #archivos de cobertura
 coveragereport/
 CoverageReport_Reciente/
+# Reportes de Cobertura específicos
+CoverageReport/
+CoverageReports/
+ReporteHTML/
+coverlet.runsettings
+# Reportes de ReportGenerator / Cobertura
+coverage-report/
+
+coveragereport/
+TestResults/
+tests/**/TestResults/
