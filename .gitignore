@@ -59,6 +59,9 @@ coverage/
 # Configuración local de NuGet
 .sandbox-appdata/
 
+#archivos de cobertura
+coveragereport/
+CoverageReport_Reciente/
 # Reportes de Cobertura específicos
 CoverageReport/
 CoverageReports/
